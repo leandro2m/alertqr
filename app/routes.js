@@ -23,7 +23,7 @@ app.post('/api/data', function (req, res, next) {
 		sD.condoid = req.body.condoid;
 		sD.blocoid = req.body.blocoid;
 		sD.sensorid = req.body.sensorid ;
-		sD.sensorid = req.body.poleid ;
+		sD.poleid = req.body.poleid ;
 		sD.level1 = req.body.level1 ;
 		sD.level2 = req.body.level2;
 		sD.level3 = req.body.level3;

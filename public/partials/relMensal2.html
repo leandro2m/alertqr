@@ -1,0 +1,43 @@
+<div ng-controller="tableJsonCtrl3">
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-6"> 
+           <button ng-click="exportData()">Export</button>
+		  </div>
+ 
+		<div class="col-xs-6">  <strong> Selecione a quantidade de Registros </strong> 
+				<select ng-model="lmt">
+					<option>20</option>
+					<option>50</option>
+					<option>100</option>
+				</select>						
+		</div>	
+	</div>
+</div>
+
+    <div id="exportable">
+	<table class="table table-bordered table-striped" id="data-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>ID do Reservatório</th>
+                <th>Level1</th>
+				<th>Level2</th>
+				<th>Level3</th>
+				<th>Level4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in items|limitTo: lmt">
+                <td>{{item.datetime}}</td>
+                <td>{{item.poleid}}</td>
+                <td>{{item.level1}}</td>
+				<td>{{item.level2}}</td>
+				<td>{{item.level3}}</td>
+				<td>{{item.level4}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>

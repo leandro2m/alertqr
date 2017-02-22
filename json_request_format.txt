@@ -1,0 +1,13 @@
+
+{
+"datetime":"2/19/2017 15:19:00",
+"condid":1,
+"blocoid":2,
+"sensorid":"19216812",
+"level1":1,
+"level2":1,
+"level3":1,
+"level4":0,
+"temp":30,
+"humi":20
+}

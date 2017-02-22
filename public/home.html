@@ -35,7 +35,7 @@
     .defer(d3.json, "/api/data")
     .await(displayTotals);
 
-var fiveMin = setInterval(renderData, 300000);
+var gau3Min = setInterval(renderData, 180000);
 function renderData() {
 		queue().defer(d3.json, "/api/data").await(displayTotals);
 }		

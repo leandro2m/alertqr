@@ -4,7 +4,7 @@ queue()
     .defer(d3.json, "/api/data")
     .await(makeGraphs);
 
-   function makeGraphs(error, apiData){
+function makeGraphs(error, apiData){
 	
    //Start Transformations
 	var dataSet = apiData;
@@ -111,6 +111,7 @@ queue()
 		.xAxisLabel("Data")
 		.brushOn(false)
 		.yAxisLabel("Volume H2O") 
+		.ordinalColors(['#ff0000','#00bfff','#1e90ff','#0000ff','#747474','#910091','#a65628'])
 		.yAxis().ticks(10);
 
 
@@ -129,7 +130,7 @@ queue()
       .barPadding(10)
       .xAxisLabel('Data')
 	  .brushOn(false)
-	  .ordinalColors(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628'])
+      .ordinalColors(['#f40000','#ffff30','#009100','#009191','#ff7f00','#ffff33','#a65628'])
       .yAxisLabel('Critical Events');
 		
 	    dc.renderAll();
@@ -163,6 +164,7 @@ queue()
 		.xAxisLabel("Data")
 		.brushOn(false)
 		.yAxisLabel("Volume Cisterna") 
+		.ordinalColors(['#ff0000','#00bfff','#1e90ff','#0000ff','#747474','#910091','#a65628'])
 		.yAxis().ticks(10);
 
 
@@ -181,11 +183,17 @@ queue()
       .barPadding(10)
       .xAxisLabel('Data')
 	  .brushOn(false)
-	  .ordinalColors(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628'])
+      .ordinalColors(['#f40000','#ffff30','#009100','#009191','#ff7f00','#ffff33','#a65628'])
       .yAxisLabel('Count');
 		
     dc.renderAll();
 	
    };
 
+var ci3Min = setInterval(renderData, 180000);
+function renderData() {
+		queue().defer(d3.json, "/api/data").await(makeGraphs);
+}	
+   
 });
+

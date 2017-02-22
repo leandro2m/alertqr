@@ -4,7 +4,7 @@ queue()
     .defer(d3.json, "/api/data")
     .await(makeGraphs);
 	
-   function makeGraphs(error, apiData){
+function makeGraphs(error, apiData){
 	
    //Start Transformations
 	var dataSet = apiData;
@@ -110,6 +110,7 @@ queue()
 		.xAxisLabel("Data")
 		.brushOn(false)
 		.yAxisLabel("Volume H2O") 
+		.ordinalColors(['#ff0000','#00bfff','#1e90ff','#0000ff','#747474','#910091','#a65628'])
 		.yAxis().ticks(10);
 
 	var criticalDaysChart = dc.barChart("#critical-days-chart");		
@@ -160,7 +161,8 @@ queue()
     	.renderVerticalGridLines(true)
 		.xAxisLabel("Data")
 		.brushOn(false)
-		.yAxisLabel("Volume H2O") 
+		.yAxisLabel("Volume H2O")
+		.ordinalColors(['#ff0000','#00bfff','#1e90ff','#0000ff','#747474','#910091','#a65628'])		
 		.yAxis().ticks(10);
 
 	var criticalDaysChart = dc.barChart("#critical-days-chart");		
@@ -184,5 +186,8 @@ queue()
     dc.renderAll();
 	
    };
-
+var cx3Min = setInterval(renderData, 180000);
+function renderData() {
+		queue().defer(d3.json, "/api/data").await(makeGraphs);
+}	
 });

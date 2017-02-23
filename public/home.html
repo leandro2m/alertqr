@@ -48,16 +48,16 @@ function renderData() {
 	dataSet.forEach(function(d) {
 		d.datetime = dateFormat.parse(d.datetime);
 //		console.log(d.datetime);
-		if (d.level4 = 1) {
+		if (d.level4 == 1) {
 			d.total = 90;
 			} 
-		else if (d.level3 = 1) {
+		else if (d.level3 == 1) {
 			d.total = 75;
 			}
-		else if (d.level2 = 1) {
+		else if (d.level2 == 1) {
 			d.total = 50;
 			}
-		else if (d.level1 = 1) {
+		else if (d.level1 == 1) {
 			d.total = 20;
 			}	
 		 else {
@@ -69,14 +69,14 @@ function renderData() {
 	var ndx = crossfilter(dataSet);
 
 	//Cria a dimensão do tempo
- 	var timeDim1 = ndx.dimension(function(d) {if (d.poleid = 1) {return new Date(d.datetime).getTime();}});
+ 	var timeDim1 = ndx.dimension(function(d) {if (d.poleid = 1) {return d.datetime;}});
 	//acha o volume do ultimo registro
     var lastVolume1 = timeDim1.top(1)[0].total;
 		console.log("LastVolume is:" + lastVolume1);		
 		console.log("LastTime is: " + timeDim1.top(1)[0].datetime);
     
 		
-	var timeDim2 = ndx.dimension(function(d) {if (d.poleid = 2) {return new Date(d.datetime).getTime();}});
+	var timeDim2 = ndx.dimension(function(d) {if (d.poleid = 2) {return d.datetime;}});
 		//acha o volume do ultimo registro
     var lastVolume2 = timeDim2.top(1)[0].total;
 		console.log("LastVolume is:" + lastVolume2);	

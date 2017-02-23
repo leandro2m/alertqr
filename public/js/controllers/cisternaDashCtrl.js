@@ -2,9 +2,9 @@ angular.module('App').controller('cisternaDashCtrl', function($scope,$resource){
    
 queue()
     .defer(d3.json, "/api/data")
-    .await(makeGraphs);
+    .await(makeGraphs2);
 
-function makeGraphs(error, apiData){
+function makeGraphs2(error, apiData){
 	
    //Start Transformations
 	var dataSet = apiData;
@@ -15,16 +15,16 @@ function makeGraphs(error, apiData){
 	dataSet.forEach(function(d) {
 		d.datetime = dateFormat.parse(d.datetime);
 		d.month = monthFormat(d.datetime);
-		if (d.level4 = 1) {
+		if (d.level4 == 1) {
 			d.total = 90;
 			} 
-		else if (d.level3 = 1) {
+		else if (d.level3 == 1) {
 			d.total = 75;
 			}
-		else if (d.level2 = 1) {
+		else if (d.level2 == 1) {
 			d.total = 50;
 			}
-		else if (d.level1 = 1) {
+		else if (d.level1 == 1) {
 			d.total = 20;
 			}	
 		 else {
@@ -47,15 +47,15 @@ function makeGraphs(error, apiData){
 //	 timeDim.filter(function(d) {return d.poleid == 1}); 
 	
 	//Define o chart #1 de níveis sobrepostos 
-	var status_tc = timeDim.group().reduceSum(function(d) { if (d.level1 = 1 && d.poleid = 1) {return 20;} else {return 10;};});
-	var status_tl = timeDim.group().reduceSum(function(d) { if (d.level2 = 1 && d.poleid = 1 ) {return 30;} else {return 0;};});
-	var status_tm = timeDim.group().reduceSum(function(d) { if (d.level3 = 1 && d.poleid = 1) {return 20;} else {return 0;};});
-	var status_tf = timeDim.group().reduceSum(function(d) { if (d.level4 = 1 && d.poleid = 1) {return 20;} else {return 0;};});	
+	var status_tc = timeDim.group().reduceSum(function(d) { if (d.level1 == 1 && d.poleid == 1) {return 20;} else {return 10;};});
+	var status_tl = timeDim.group().reduceSum(function(d) { if (d.level2 == 1 && d.poleid == 1 ) {return 30;} else {return 0;};});
+	var status_tm = timeDim.group().reduceSum(function(d) { if (d.level3 == 1 && d.poleid == 1) {return 20;} else {return 0;};});
+	var status_tf = timeDim.group().reduceSum(function(d) { if (d.level4 == 1 && d.poleid == 1) {return 20;} else {return 0;};});	
 	
 	
 	//Define o bar chart de dias críticos
     var countCriticalDays = timeDim.group().reduce(
-	function reduceAdd(p, v) {return (v.total = 10) ? p + 1 : p;},
+	function reduceAdd(p, v) {return (v.total == 10) ? p + 1 : p;},
 	function reduceRemove(p, v) {return (v.total > 10) ? p - 1 : p;},
 	function reduceInitial() {return 0;}
 	);

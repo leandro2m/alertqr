@@ -64,24 +64,33 @@ function renderData() {
 			d.total = 10;
 		   }	
 	});
-  
-    //Cria Crossfilter
-	var ndx = crossfilter(dataSet);
+ 
+    var ndx = crossfilter(dataSet); 
+ 	var timeDim = ndx.dimension(function(d) {return d.datetime;});
+	
+	var p1 = true;
+	var p2 = true;
+	var samples = 48;
+	var i = 0;
+	do {
+		if ( (timeDim.top(samples)[i].poleid == 1 && p1 )) {
+			lastVolume1 = timeDim.top(samples)[i].total;
+			console.log("LastVolume1 is:" + lastVolume1);		
+			console.log("LastTime1 is: " + timeDim.top(samples)[i].datetime);
+			i = i + 1;
+			p1 = false;
 
-	//Cria a dimensão do tempo
- 	var timeDim1 = ndx.dimension(function(d) {if (d.poleid = 1) {return d.datetime;}});
-	//acha o volume do ultimo registro
-    var lastVolume1 = timeDim1.top(1)[0].total;
-		console.log("LastVolume is:" + lastVolume1);		
-		console.log("LastTime is: " + timeDim1.top(1)[0].datetime);
-    
-		
-	var timeDim2 = ndx.dimension(function(d) {if (d.poleid = 2) {return d.datetime;}});
-		//acha o volume do ultimo registro
-    var lastVolume2 = timeDim2.top(1)[0].total;
-		console.log("LastVolume is:" + lastVolume2);	
-		console.log("LastTime is: " + timeDim2.top(1)[0].datetime);
-    
+			} 
+		else if ((timeDim.top(samples)[i].poleid == 2 && p2)) {
+			lastVolume2 = timeDim.top(samples)[i].total;
+			console.log("LastVolume2 is:" + lastVolume2);		
+			console.log("LastTime2 is: " + timeDim.top(samples)[i].datetime);
+			i = i + 1;
+			p2 = false;
+			}
+		}
+		while (p1 ||  p2);
+  
 // Configura gaugue
     var config1 = liquidFillGaugeDefaultSettings();
     config1.circleThickness = 0.2;

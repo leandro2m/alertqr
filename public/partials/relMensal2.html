@@ -22,20 +22,21 @@
             <tr>
                 <th>Date</th>
                 <th>ID do Reservatório</th>
-                <th>Level1</th>
-				<th>Level2</th>
-				<th>Level3</th>
-				<th>Level4</th>
+                <th>Nível</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in items|limitTo: lmt">
+           <tr ng-repeat="item in items | orderBy: 'datetime':true | limitTo: lmt">
                 <td>{{item.datetime}}</td>
-                <td>{{item.poleid}}</td>
-                <td>{{item.level1}}</td>
-				<td>{{item.level2}}</td>
-				<td>{{item.level3}}</td>
-				<td>{{item.level4}}</td>
+                <td>{{item.blocoid}}</td>
+                <td>{{item.sensorid}}</td>
+                <td ng-if = "item.level4 =='1' && item.level3 =='1' && item.level2 =='1'">Cheio</td>
+                <td ng-if = "item.level4 =='0' && item.level3 =='1' && item.level2 =='1'">Cheio</td>
+                <td ng-if = "item.level3 =='0' && item.level2 =='1' && item.level1 == '1'">Médio</td>
+                <td ng-if = "item.level3 =='0' && item.level2 =='0' && item.level1 =='1'">Baixo</td>
+                <td ng-if = "item.level3 =='0' && item.level2 =='0' && item.level1 =='0'">Crítico</td>
+                <td ng-if = "item.level3 =='1' && item.level2 =='1' && item.level1 =='0'">Error</td>
+                <td ng-if = "item.level3 =='1' && item.level2 =='0' && item.level1 =='0'">Error</td>
             </tr>
         </tbody>
     </table>

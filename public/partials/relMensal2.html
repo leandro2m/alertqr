@@ -31,13 +31,13 @@
                 <td>{{item.datetime}}</td>
                 <td>{{item.blocoid}}</td>
                 <td>{{item.sensorid}}</td>
-                <td ng-if = "item.level4 =='1' && item.level3 =='1' && item.level2 =='1'">Cheio</td>
-                <td ng-if = "item.level4 =='0' && item.level3 =='1' && item.level2 =='1'">Cheio</td>
-                <td ng-if = "item.level3 =='0' && item.level2 =='1' && item.level1 == '1'">Médio</td>
-                <td ng-if = "item.level3 =='0' && item.level2 =='0' && item.level1 =='1'">Baixo</td>
-                <td ng-if = "item.level3 =='0' && item.level2 =='0' && item.level1 =='0'">Crítico</td>
-                <td ng-if = "item.level3 =='1' && item.level2 =='1' && item.level1 =='0'">Error</td>
-                <td ng-if = "item.level3 =='1' && item.level2 =='0' && item.level1 =='0'">Error</td>
+                <td ng-if = "item.level4 =='1' && item.level3 =='1' && item.level2 =='1'"><font color="green">Cheio - Nível 4</font></td>
+                <td ng-if = "item.level4 =='0' && item.level3 =='1' && item.level2 =='1'"><font color="green">Cheio - Nível 3</font></td>
+                <td ng-if = "item.level3 =='0' && item.level2 =='1' && item.level1 == '1'"><b>Médio - Nível 2</b></td>
+                <td ng-if = "item.level3 =='0' && item.level2 =='0' && item.level1 =='1'"><font color="red">Baixo - Nível 1</td>
+                <td ng-if = "item.level3 =='0' && item.level2 =='0' && item.level1 =='0'"><font color="red"><b>Crítico</b></td>
+                <td ng-if = "item.level3 =='1' && item.level2 =='1' && item.level1 =='0'"><b>Error</b></td>
+                <td ng-if = "item.level3 =='1' && item.level2 =='0' && item.level1 =='0'"><b>Error</b></td>
             </tr>
         </tbody>
     </table>

@@ -21,7 +21,7 @@
     <div id="exportable">
 	<table class="table table-bordered table-striped" id="data-table">
         <thead>
-            <tr>
+           <tr>
                 <th>Date</th>
                 <th>Bloco</th>
                 <th>Espaço Comum</th>
@@ -41,7 +41,7 @@
                 <td>{{item.humiext}}</td>
                 <td>{{item.tempspace}}</td>
                 <td>{{item.humispace}}</td>
-                <td ng-if = "item.presencecnt =='0'"><font color="green">Ambiente Vazio</font></td>
+                <td ng-if = "item.presencecnt =='0'"><font color="red">Ambiente Vazio</font></td>
                 <td ng-if = "item.presencecnt =='1'"><font color="green">Ambiente Sendo utilizado</font></td>
             </tr>
         </tbody>

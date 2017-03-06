@@ -3,7 +3,7 @@ angular.module('App').controller("TempCtrl", function($scope, $http) {
 	$scope.items = [];
 
 	var carregaDados = function() {
-		$http.get("http://localhost:8080/api/data1").then(function(response) {
+		$http.get("http://leandro2m.herokuapp.com/api/data1").then(function(response) {
 			$scope.items = response.data
 			
 		});

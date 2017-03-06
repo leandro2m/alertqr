@@ -23,6 +23,11 @@ angular.module('App', ['ngResource','ui.bootstrap', 'ui.router', 'ui.navbar'])
       templateUrl: "partials/caixaDash.html",
 	  controller: 'caixaDashCtrl'
     })
+    .state('temp', {
+      url: "/temp",
+      templateUrl: "partials/temp.html",
+    controller: 'TempCtrl'
+    })
 	.state('relatorio', {
       url: "/relatorio",
       templateUrl: "partials/relMensal2.html",
@@ -52,6 +57,9 @@ angular.module('App', ['ngResource','ui.bootstrap', 'ui.router', 'ui.navbar'])
     subtree: [{
       name: "Relatório",
       link: "relatorio"
+    }, {
+      name: "Temp",
+      link: "temp"
     }]
   },
   

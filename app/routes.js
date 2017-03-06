@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'); //mongo connection
 var sensorData = require('./models/sensorschema');
+var TempData = require ('./models/tempschema'); // Schema para Temperatura
 
 module.exports = function(app) {
 
@@ -37,5 +38,42 @@ app.post('/api/data', function (req, res, next) {
 	})
 
 })	
-	
+//Get para Schema de Temperatura do Espaco Comum
+app.get('/api/data1', function(req, res, next) { 
+        mongoose.model('Tp').find({}, function (err, tp) {
+              if (err) {
+                  return console.error(err);
+              } else {
+                  res.format({
+                    json: function(){
+                        res.json(tp);
+                    }
+                });
+              }     
+        });
+    })
+//Post para temperatura do espaco comum
+app.post('/api/data1', function (req, res, next) {
+		var sD= new TempData();
+		sD.datetime = req.body.datetime;
+		sD.condoid = req.body.condoid;
+		sD.blocoid = req.body.blocoid;
+		sD.sensorid = req.body.sensorid ;
+		sD.spaceid = req.body.spaceid ;
+		sD.tempext = req.body.tempext ;
+		sD.humiext = req.body.humiext;
+		sD.tempspace = req.body.tempspace;
+		sD.humispace = req.body.humispace;
+		sD.presencecnt = req.body.presencecnt;
+ 
+		sD.save(function (err, post) {
+			if (err) { return next(err) }
+ 		       res.status(201).json({ message: 'data added to Tempeture collection'});
+	})
+
+})	
+app.get('/temp', function(req, res, next){
+	res.render('temp.html');
+});
+
 }

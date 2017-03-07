@@ -64,8 +64,6 @@
             
             function createGauges()
             {
-                createGauge("cpu", "Temp Ext", 0, 100);
-                createGauge("temp", "Temp Int", 0, 100);
                 createGauge("temp", "Temp Int", 0, 100);
                 
             }
@@ -120,6 +118,6 @@
     <!-- Hook here the partials -->
     <div ui-view=""></div>
   </div>
-
+  <div id="tempGaugeContainer" align='center'></div>
 
 </body>

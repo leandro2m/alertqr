@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script src="js/d3.v2.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/gauge.js"></script>
+		<script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
+		
+
+<script>
+						
+				
+			var gauges = [];
+			
+			function createGauge(name, label, min, max)
+			{
+				var config = 
+				{
+					size: 150,
+					label: label,
+					min: undefined != min ? min : 0,
+					max: undefined != max ? max : 100,
+					majorTicks: 11,
+					minorTicks: 5
+				}
+				
+				var range = config.max - config.min;
+				config.yellowZones = [{ from: config.min + range*0.75, to: config.min + range*0.9 }];
+				config.redZones = [{ from: config.min + range*0.9, to: config.max }];
+				
+				gauges[name] = new Gauge(name + "GaugeContainer", config);
+				gauges[name].render();
+			}
+			
+			function createGauges()
+			{
+				createGauge("temp", "Temp Int", 0, 100);
+				createGauge("temp", "Temp Ext", 0, 100);
+				
+			}
+			
+			function updateGauges()
+			{
+				for (var key in gauges)
+				{
+					var value = getRandomValue(gauges[key])
+					gauges[key].redraw(value);
+				}
+			}
+			
+			function getRandomValue(gauge)
+			{
+				var overflow = 0; //10;
+				return gauge.config.min - overflow + (gauge.config.max - gauge.config.min + overflow*2) *  Math.random();
+			}
+			
+			function initialize()
+			{
+				createGauges();
+				setInterval(updateGauges, 5000);
+			}
+			
+		</script>
+
+	</head>
+	<body onload="initialize()">
+
+	<script> 
+	//document.getElementById("carregagauge").onload = function(){initialize()}
+	//db.getCollection('tempeture').find({}).sort({'datetime':-1}).limit(1)
+	var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status == 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status);
+      }
+    };
+    xhr.send();
+};
+ getJSON('http://localhost:8080/api/data1', function(err, data) {
+  if (err != null) {
+    alert('Something went wrong: ' + err);
+  } else {
+    alert('Your Json result is:  ' + data.result);
+    result.innerText = data.result;
+  }
+});
+	
+
+
+
+
+
+	</script>
+		<p id="tempGaugeContainer"></p>
+
+	</body>
+
+</html>

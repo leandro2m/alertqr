@@ -72,8 +72,6 @@ app.post('/api/data1', function (req, res, next) {
 	})
 
 })	
-app.get('/temp', function(req, res, next){
-	res.render('temp.html');
-});
+
 
 }
